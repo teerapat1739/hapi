@@ -2,6 +2,9 @@
 
 const Hapi = require('@hapi/hapi');
 const {JsonReform} = require('./services/reform-json')
+const { Github} = require('./services/github')
+const dotenv = require('dotenv');
+dotenv.config();
 
 const init = async () => {
 
@@ -24,8 +27,16 @@ const init = async () => {
         method: 'POST',
         path: '/reform-json',
         handler: (request, h) => {
-
             return JsonReform(request);
+        }
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/github',
+        handler: async (request, h) => {
+            return Github(request.query.q || 'google',request.query.page || 1);
+
         }
     });
 

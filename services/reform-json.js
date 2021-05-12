@@ -1,6 +1,10 @@
 
 
-exports.JsonReform = ({payload}) =>{
+exports.JsonReform = (request) =>{
+  if ( request == null ){
+      return {}
+  }
+  let payload = request
   let obj = []
   let objSaveID = []
   let chainParentWithChild = {}
@@ -30,17 +34,14 @@ exports.JsonReform = ({payload}) =>{
     for (let index = 0; index < obj.length; index++) {
         const element = obj[index];
         let indexAssign = objSaveID.indexOf(element.parent_id)
-        console.log(objSaveID.indexOf(element.parent_id))
         if(indexAssign >= 0){
-            obj[indexAssign].children.push(obj[index])
+            obj[indexAssign].children.push({...obj[index]})
     
         }
         
     }
     
     obj = obj.filter(({parent_id}) => parent_id == null)
-    
-
 
     return obj
 

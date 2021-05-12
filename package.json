@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "lab -v **/*.test.js",
     "start": "nodemon app.js"
   },
   "repository": {
@@ -19,9 +19,14 @@
   },
   "homepage": "https://github.com/teerapat1739/hapi#readme",
   "dependencies": {
-    "@hapi/hapi": "^20.1.2"
+    "@hapi/hapi": "^20.1.2",
+    "@octokit/core": "^3.4.0",
+    "axios": "^0.21.1",
+    "dotenv": "^9.0.2"
   },
   "devDependencies": {
+    "@hapi/code": "^8.0.1",
+    "@hapi/lab": "^22.0.4",
     "nodemon": "^2.0.7"
   }
 }
